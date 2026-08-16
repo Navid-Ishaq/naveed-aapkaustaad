@@ -1,0 +1,36 @@
+---
+import BrandMark from "./BrandMark.astro";
+
+const pathname = Astro.url.pathname;
+const isHome = pathname === "/";
+const isFieldNotes = pathname.startsWith("/field-notes");
+const isContact = pathname === "/contact";
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/" aria-label="Muhammad Naveed Ishaque — Educational Solutions, home">
+      <BrandMark />
+      <span class="brand__copy">
+        <strong>Muhammad Naveed Ishaque</strong>
+        <span>Educational Solutions</span>
+      </span>
+    </a>
+
+    <details class="site-menu">
+      <summary class="site-menu__toggle">
+        <span class="site-menu__label">Menu</span>
+        <span class="site-menu__icon" aria-hidden="true"><i></i><i></i></span>
+      </summary>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="/" aria-current={isHome ? "page" : undefined}>Home</a>
+        <a href="/field-notes" aria-current={isFieldNotes ? "page" : undefined}>Field Notes</a>
+        <a href="https://alnoor.aapkaustaad.com/courses.html">Academy courses</a>
+        <a href="https://alnoor.aapkaustaad.com/about.html">About AL-NOOR</a>
+        <a class="button button--primary site-nav__cta" href="/contact" aria-current={isContact ? "page" : undefined}>
+          Bring a challenge
+        </a>
+      </nav>
+    </details>
+  </div>
+</header>

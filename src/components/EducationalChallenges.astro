@@ -1,0 +1,103 @@
+---
+const challenges = [
+  {
+    audience: "Learner",
+    challenge: "“I study, but I still cannot understand the subject.”",
+    direction: "Clarify where understanding breaks down, then shape explanations and practice around the learner.",
+    tone: "blue",
+  },
+  {
+    audience: "Family",
+    challenge: "“We are not sure which learning path or course is the right next step.”",
+    direction: "Start with the learner’s goal, current stage and practical constraints before suggesting a direction.",
+    tone: "amber",
+  },
+  {
+    audience: "Teacher or tutor",
+    challenge: "“I keep answering the same questions, but learners still need clearer guidance.”",
+    direction: "Identify recurring points of confusion and make dependable guidance easier to find and use.",
+    tone: "teal",
+  },
+  {
+    audience: "Multilingual learners",
+    challenge: "“Important information is difficult to understand in the learner’s preferred language.”",
+    direction: "Improve language access while keeping the educational meaning accurate, respectful and clear.",
+    tone: "lilac",
+  },
+  {
+    audience: "Academy",
+    challenge: "“Our courses, learning materials and student information are scattered.”",
+    direction: "Organise the learner journey so people can understand what is offered, what comes next and where to get help.",
+    tone: "blue",
+  },
+  {
+    audience: "Training team",
+    challenge: "“Administrative work is taking time away from teaching and learner support.”",
+    direction: "Map the repeated work and simplify the parts that create delay, duplication or avoidable confusion.",
+    tone: "teal",
+  },
+  {
+    audience: "Educational organisation",
+    challenge: "“We want to use AI responsibly, but we do not know where it would genuinely help.”",
+    direction: "Begin with the educational need, privacy and human responsibility—not with the technology.",
+    tone: "amber",
+  },
+  {
+    audience: "Founder or community",
+    challenge: "“We have an educational idea, but do not know how to turn it into something useful.”",
+    direction: "Define who it should help, what should improve and the smallest responsible way to test the idea.",
+    tone: "lilac",
+  },
+];
+---
+
+<section class="educational-challenges section" id="educational-challenges" aria-labelledby="challenges-title">
+  <div class="container">
+    <header class="challenges-intro flow">
+      <p class="eyebrow">Start with what is happening</p>
+      <h2 id="challenges-title">You do not need to diagnose the educational problem yourself.</h2>
+      <p class="lede">
+        A useful conversation can begin with one honest sentence. We listen for the learner, the difficulty
+        and the outcome that matters—then work out a responsible starting direction.
+      </p>
+    </header>
+
+    <div class="challenge-board" aria-label="Examples of educational challenges and starting directions">
+      {
+        challenges.map((item, index) => (
+          <article class={`challenge-dialogue challenge-dialogue--${item.tone}`}>
+            <div class="challenge-dialogue__signal">
+              <p class="challenge-dialogue__meta">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                {item.audience}
+              </p>
+              <h3>{item.challenge}</h3>
+            </div>
+            <div class="challenge-dialogue__direction">
+              <span aria-hidden="true">→</span>
+              <div>
+                <p class="challenge-dialogue__label">A useful starting direction</p>
+                <p>{item.direction}</p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <aside class="challenges-close" aria-labelledby="challenges-close-title">
+      <div class="challenges-close__copy flow">
+        <p class="eyebrow">That is enough to begin</p>
+        <h2 id="challenges-close-title">Bring the challenge as you see it.</h2>
+        <p>
+          You do not need a technical brief or a ready-made solution. Explain who needs support, what feels
+          difficult and what better would look like.
+        </p>
+      </div>
+      <a class="button button--primary" href="#challenge-journey">
+        See how we approach it
+        <span aria-hidden="true">↓</span>
+      </a>
+    </aside>
+  </div>
+</section>

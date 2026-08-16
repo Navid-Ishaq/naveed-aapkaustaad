@@ -1,0 +1,108 @@
+---
+const caseStudy = [
+  {
+    label: "Context",
+    title: "A multilingual educational centre with varied learner journeys",
+    text: "AL-NOOR Asian Educational Centre serves learners exploring driving, professional transport, Spanish-language and nationality-examination preparation. The academy needed one clear digital home for its current offer.",
+  },
+  {
+    label: "Challenge",
+    title: "Make different kinds of information easier to understand",
+    text: "Course details, learner guidance, policies, contact routes and multilingual support needed to feel connected without turning the experience into a dense information catalogue.",
+  },
+  {
+    label: "People affected",
+    title: "Learners, families and the academy team",
+    text: "The experience had to support people with different goals, languages and levels of confidence while keeping factual academy information dependable.",
+  },
+  {
+    label: "Approach",
+    title: "Begin with learner questions and verified academy content",
+    text: "The work organised the experience around clear navigation, recognisable course pathways, readable explanations, purposeful calls to action and responsible access to help.",
+  },
+  {
+    label: "What was created",
+    title: "A coherent academy platform",
+    text: "The rebuilt experience includes responsive course information, multilingual entry points, study-support policies, accessible contact choices and a shared educational AI assistant integration.",
+  },
+  {
+    label: "Why it matters",
+    title: "The digital experience should support the educational relationship",
+    text: "Clear structure helps visitors identify relevant information and choose an appropriate next step. It also gives the academy a more consistent foundation for presenting its work.",
+  },
+  {
+    label: "What was learned",
+    title: "Useful innovation needs factual boundaries",
+    text: "Educational platforms become more trustworthy when content, course claims, automated guidance and contact behaviour stay grounded in verified information and transparent limitations.",
+  },
+];
+---
+
+<section class="selected-work section" id="selected-work" aria-labelledby="selected-work-title">
+  <div class="container">
+    <header class="selected-work__intro">
+      <div class="flow">
+        <p class="eyebrow">Selected work · Case study 01</p>
+        <h2 id="selected-work-title">AL-NOOR educational platform</h2>
+      </div>
+      <div class="selected-work__summary">
+        <p class="lede">
+          A founder-led redesign bringing the academy’s course information, learner guidance, multilingual
+          experience, contact pathways and protected AI assistant into one coherent platform.
+        </p>
+        <p class="selected-work__evidence">Presented without invented performance figures, testimonials or outcome claims.</p>
+      </div>
+    </header>
+
+    <div class="case-study">
+      <div class="case-study__overview">
+        <div class="case-study__signal" aria-hidden="true">
+          <span>AL</span>
+          <i></i>
+          <span>NOOR</span>
+        </div>
+        <dl>
+          <div>
+            <dt>Focus</dt>
+            <dd>Educational platform and learner experience</dd>
+          </div>
+          <div>
+            <dt>Audience</dt>
+            <dd>Multilingual learners and academy visitors</dd>
+          </div>
+          <div>
+            <dt>Role</dt>
+            <dd>Founder vision, content direction and solution development</dd>
+          </div>
+          <div>
+            <dt>Current website</dt>
+            <dd><a href="https://alnoor.aapkaustaad.com">alnoor.aapkaustaad.com</a></dd>
+          </div>
+        </dl>
+      </div>
+
+      <ol class="case-study__story">
+        {
+          caseStudy.map((item, index) => (
+            <li>
+              <div class="case-study__step" aria-hidden="true">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <i></i>
+              </div>
+              <article>
+                <p class="eyebrow">{item.label}</p>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <div class="selected-work__actions cluster">
+      <a class="button button--primary" href="https://alnoor.aapkaustaad.com">Explore the live academy</a>
+      <a class="button button--secondary" href="https://alnoor.aapkaustaad.com/courses.html">View current courses</a>
+    </div>
+  </div>
+</section>

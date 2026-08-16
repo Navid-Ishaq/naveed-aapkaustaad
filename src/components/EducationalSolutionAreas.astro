@@ -1,0 +1,110 @@
+---
+const solutionGroups = [
+  {
+    number: "01",
+    label: "Learning & understanding",
+    introduction: "For making knowledge clearer, learning more purposeful and progress easier to support.",
+    areas: [
+      { title: "Learning experience design", outcome: "Shape a clearer journey from first explanation to confident application." },
+      { title: "Course and curriculum development", outcome: "Organise learning around useful objectives, progression and checks for understanding." },
+      { title: "Examination-preparation pathways", outcome: "Build a realistic route through understanding, practice and review using verified requirements." },
+      { title: "Educational content development", outcome: "Turn important knowledge into material learners can understand and use." },
+    ],
+    accent: "blue",
+  },
+  {
+    number: "02",
+    label: "Access & guidance",
+    introduction: "For helping people find the right information, in a form and language they can use.",
+    areas: [
+      { title: "Multilingual learner support", outcome: "Make guidance more accessible without losing educational meaning or context." },
+      { title: "Student guidance and communication", outcome: "Help learners understand what is available, what comes next and where to ask for help." },
+      { title: "Educational knowledge organisation", outcome: "Bring scattered materials and answers into a clearer, dependable structure." },
+      { title: "Teacher and tutor support", outcome: "Make recurring guidance easier to prepare, share and improve." },
+    ],
+    accent: "teal",
+  },
+  {
+    number: "03",
+    label: "Services & systems",
+    introduction: "For improving the educational experience around teaching, administration and growth.",
+    areas: [
+      { title: "Academy operations and reporting", outcome: "Reduce avoidable friction and make useful information easier to understand." },
+      { title: "Digital learning platforms", outcome: "Create focused digital experiences built around real learner and team needs." },
+      { title: "Community-learning initiatives", outcome: "Develop practical learning support around the people, language and context involved." },
+      { title: "Training and workforce learning", outcome: "Connect learning with the knowledge and practice people need in their work." },
+    ],
+    accent: "amber",
+  },
+  {
+    number: "04",
+    label: "Ideas & responsible innovation",
+    introduction: "For exploring new opportunities carefully, with useful outcomes and human responsibility in view.",
+    areas: [
+      { title: "Responsible AI-assisted education", outcome: "Use AI only where it improves access, clarity or support—and keep human review central." },
+      { title: "Educational business and programme development", outcome: "Clarify the audience, educational value and practical shape of a programme." },
+      { title: "Turning educational ideas into working solutions", outcome: "Move from a promising idea to a focused, responsible first version that can be tested." },
+    ],
+    accent: "lilac",
+  },
+];
+---
+
+<section class="solution-areas section" id="solution-areas" aria-labelledby="solution-areas-title">
+  <div class="container">
+    <div class="solution-areas__header">
+      <div class="flow">
+        <p class="eyebrow">Practical solution areas</p>
+        <h2 id="solution-areas-title">Different challenges. One disciplined starting point.</h2>
+      </div>
+      <p class="lede">
+        Every area begins by understanding the learner, the educational objective and what needs to work better.
+        The method and tools are selected only after that context is clear.
+      </p>
+    </div>
+
+    <div class="solution-index" aria-label="Educational solution areas grouped by purpose">
+      {
+        solutionGroups.map((group) => (
+          <article class={`solution-group solution-group--${group.accent}`}>
+            <header class="solution-group__header">
+              <p class="solution-group__number" aria-hidden="true">{group.number}</p>
+              <div>
+                <h3>{group.label}</h3>
+                <p>{group.introduction}</p>
+              </div>
+            </header>
+            <ol class="solution-group__list">
+              {group.areas.map((area, index) => (
+                <li>
+                  <span class="solution-group__marker" aria-hidden="true">
+                    {group.number}.{index + 1}
+                  </span>
+                  <div>
+                    <h4>{area.title}</h4>
+                    <p>{area.outcome}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </article>
+        ))
+      }
+    </div>
+
+    <aside class="solution-principle" aria-labelledby="solution-principle-title">
+      <div class="solution-principle__mark" aria-hidden="true">
+        <span>01</span><i></i><span>02</span><i></i><span>03</span>
+      </div>
+      <div class="flow">
+        <p class="eyebrow">The principle</p>
+        <h2 id="solution-principle-title">We do not begin with technology.</h2>
+        <p>
+          We begin with the learner, the educational objective and the problem that needs to be solved. If a
+          simple approach works best, we keep it simple. If a more capable system is justified, it must still
+          serve a clear human outcome.
+        </p>
+      </div>
+    </aside>
+  </div>
+</section>

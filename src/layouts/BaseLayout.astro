@@ -1,0 +1,85 @@
+---
+import "../styles/global.css";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  noindex?: boolean;
+  pageType?: "website" | "article";
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonicalPath = Astro.url.pathname,
+  noindex = false,
+  pageType = "website",
+  jsonLd,
+} = Astro.props;
+
+const canonical = new URL(canonicalPath, Astro.site);
+const defaultJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://naveed.aapkaustaad.com/#muhammad-naveed-ishaque",
+    name: "Muhammad Naveed Ishaque",
+    url: "https://naveed.aapkaustaad.com/",
+    jobTitle: "Founder & Educational Solutions Lead",
+    affiliation: {
+      "@type": "EducationalOrganization",
+      name: "AL-NOOR Asian Educational Centre",
+      url: "https://alnoor.aapkaustaad.com/",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://naveed.aapkaustaad.com/#website",
+    name: "Muhammad Naveed Ishaque — Educational Solutions",
+    url: "https://naveed.aapkaustaad.com/",
+    inLanguage: "en",
+    publisher: { "@id": "https://naveed.aapkaustaad.com/#muhammad-naveed-ishaque" },
+  },
+];
+const schemas = [...defaultJsonLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])];
+const serializedSchemas = JSON.stringify(schemas).replace(/</g, "\\u003c");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Muhammad Naveed Ishaque" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#111936" />
+    <meta property="og:type" content={pageType} />
+    <meta property="og:site_name" content="Muhammad Naveed Ishaque — Educational Solutions" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <script is:inline type="application/ld+json" set:html={serializedSchemas}></script>
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <SiteHeader />
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

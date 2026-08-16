@@ -1,0 +1,59 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  publishedAt: Date;
+  readingMinutes: number;
+  canonicalPath: string;
+}
+
+const { title, description, category, publishedAt, readingMinutes, canonicalPath } = Astro.props;
+const formattedDate = new Intl.DateTimeFormat("en", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+}).format(publishedAt);
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: publishedAt.toISOString(),
+  mainEntityOfPage: new URL(canonicalPath, Astro.site).href,
+  author: { "@id": "https://naveed.aapkaustaad.com/#muhammad-naveed-ishaque" },
+  publisher: { "@id": "https://naveed.aapkaustaad.com/#muhammad-naveed-ishaque" },
+  articleSection: category,
+  inLanguage: "en",
+};
+---
+
+<BaseLayout
+  title={`${title} | Field Notes`}
+  description={description}
+  canonicalPath={canonicalPath}
+  noindex={true}
+  pageType="article"
+  jsonLd={articleSchema}
+>
+  <article class="field-note">
+    <header class="field-note__hero">
+      <div class="container field-note__hero-inner">
+        <a class="field-note__back" href="/field-notes">← Field Notes</a>
+        <p class="eyebrow">{category}</p>
+        <h1>{title}</h1>
+        <p class="lede">{description}</p>
+        <div class="field-note__meta">
+          <span>By Muhammad Naveed Ishaque</span>
+          <time datetime={publishedAt.toISOString()}>{formattedDate}</time>
+          <span>{readingMinutes} min read</span>
+        </div>
+      </div>
+    </header>
+    <div class="container field-note__body">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

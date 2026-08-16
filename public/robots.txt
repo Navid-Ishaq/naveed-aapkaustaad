@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# Temporary pre-launch protection. Change only during the approved launch task.
+Sitemap: https://naveed.aapkaustaad.com/sitemap.xml

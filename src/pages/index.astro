@@ -1,0 +1,30 @@
+---
+export const prerender = true;
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FounderHero from "../components/FounderHero.astro";
+import EducationalChallenges from "../components/EducationalChallenges.astro";
+import EducationSolutionFinder from "../components/EducationSolutionFinder.astro";
+import EducationalSolutionAreas from "../components/EducationalSolutionAreas.astro";
+import ClarityFramework from "../components/ClarityFramework.astro";
+import ResponsibleAI from "../components/ResponsibleAI.astro";
+import FounderAndAlnoor from "../components/FounderAndAlnoor.astro";
+import SelectedWork from "../components/SelectedWork.astro";
+import FieldNotesPreview from "../components/FieldNotesPreview.astro";
+---
+
+<BaseLayout
+  title="Muhammad Naveed Ishaque | Educational Solutions"
+  description="Founder-led educational problem-solving, multilingual learning and responsible human-centred innovation by Muhammad Naveed Ishaque."
+  noindex={true}
+>
+  <FounderHero />
+  <EducationalChallenges />
+  <EducationSolutionFinder />
+  <EducationalSolutionAreas />
+  <ClarityFramework />
+  <ResponsibleAI />
+  <FounderAndAlnoor />
+  <SelectedWork />
+  <FieldNotesPreview />
+</BaseLayout>

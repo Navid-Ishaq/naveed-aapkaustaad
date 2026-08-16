@@ -1,0 +1,32 @@
+---
+export const prerender = true;
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CollaborationForm from "../components/CollaborationForm.astro";
+---
+
+<BaseLayout
+  title="Bring an Educational Challenge | Muhammad Naveed Ishaque"
+  description="Describe an educational challenge in plain language and prepare a structured starting brief for collaboration with Muhammad Naveed Ishaque."
+  canonicalPath="/contact"
+  noindex={true}
+>
+  <section class="contact-hero">
+    <div class="container contact-hero__grid">
+      <div class="flow">
+        <p class="eyebrow">Contact & collaboration</p>
+        <h1>Bring the educational challenge.</h1>
+        <p class="lede">
+          Start with the learner, the objective and what is not working. You do not need to choose a technology,
+          system or learning method before the conversation begins.
+        </p>
+      </div>
+      <div class="contact-hero__sequence" aria-label="Collaboration starts with three steps">
+        <span><strong>01</strong> Describe the context</span>
+        <span><strong>02</strong> Clarify the better outcome</span>
+        <span><strong>03</strong> Prepare the conversation</span>
+      </div>
+    </div>
+  </section>
+  <CollaborationForm />
+</BaseLayout>

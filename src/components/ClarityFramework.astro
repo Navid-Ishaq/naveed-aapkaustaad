@@ -1,0 +1,102 @@
+---
+const stages = [
+  {
+    letter: "C",
+    title: "Context",
+    description: "Understand the learner, environment and objective before deciding what support is needed.",
+    prompt: "Who is learning—and why?",
+  },
+  {
+    letter: "L",
+    title: "Learning need",
+    description: "Identify what is difficult, missing or unclear instead of treating every learner the same.",
+    prompt: "What is getting in the way?",
+  },
+  {
+    letter: "A",
+    title: "Accessible explanation",
+    description: "Make important knowledge understandable, approachable and suitable for the learner’s context.",
+    prompt: "How can this become clearer?",
+  },
+  {
+    letter: "R",
+    title: "Real-world practice",
+    description: "Connect understanding with meaningful application, examples and opportunities to practise.",
+    prompt: "Where will learning be used?",
+  },
+  {
+    letter: "I",
+    title: "Improvement",
+    description: "Check understanding, notice what is changing and refine the support responsibly.",
+    prompt: "What evidence guides the next step?",
+  },
+  {
+    letter: "T",
+    title: "Trust",
+    description: "Use honest, transparent guidance and recognise where verification or human judgment is required.",
+    prompt: "What must remain responsible?",
+  },
+  {
+    letter: "Y",
+    title: "Your progress",
+    description: "Keep the learner’s useful outcome—not the method or technology—at the centre of the work.",
+    prompt: "What does meaningful progress look like?",
+  },
+];
+---
+
+<section class="clarity-framework section" id="clarity-framework" aria-labelledby="clarity-title">
+  <div class="container">
+    <header class="clarity-framework__intro">
+      <div class="flow">
+        <p class="eyebrow">Signature methodology</p>
+        <h2 id="clarity-title">The CLARITY Learning Framework</h2>
+      </div>
+      <p class="lede">
+        A seven-stage way to move from an educational challenge towards clearer, more responsible support—while
+        keeping the learner and useful progress at the centre.
+      </p>
+    </header>
+
+    <div class="clarity-system">
+      <div class="clarity-system__identity" aria-hidden="true">
+        <p>From context</p>
+        <div class="clarity-word">
+          {stages.map((stage) => (
+            <span>{stage.letter}</span>
+          ))}
+        </div>
+        <p>to progress</p>
+      </div>
+
+      <ol class="clarity-stages">
+        {
+          stages.map((stage, index) => (
+            <li class={stage.letter === "Y" ? "clarity-stage clarity-stage--outcome" : "clarity-stage"}>
+              <div class="clarity-stage__key" aria-hidden="true">
+                <span>{stage.letter}</span>
+                <small>{String(index + 1).padStart(2, "0")}</small>
+              </div>
+              <div class="clarity-stage__body">
+                <h3>{stage.title}</h3>
+                <p>{stage.description}</p>
+              </div>
+              <p class="clarity-stage__prompt">
+                <span>Guiding question</span>
+                {stage.prompt}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <div class="clarity-framework__close">
+      <p>
+        <strong>CLARITY is a guide, not a rigid formula.</strong>
+        The stages can be revisited as understanding grows, new evidence appears and the learner’s needs change.
+      </p>
+      <a href="#education-solution-finder">Apply CLARITY to a challenge <span aria-hidden="true">↑</span></a>
+    </div>
+  </div>
+</section>

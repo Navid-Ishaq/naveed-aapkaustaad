@@ -1,0 +1,393 @@
+---
+const supportOptions = [
+  "Individual learner",
+  "Group of learners",
+  "Teacher or tutor",
+  "Academy or training centre",
+  "Educational organisation",
+  "Community",
+  "Business or workforce",
+  "Other",
+];
+
+const challengeOptions = [
+  "Understanding a difficult subject",
+  "Examination preparation",
+  "Course or curriculum development",
+  "Multilingual learning",
+  "Student guidance",
+  "Learning materials",
+  "Educational content organisation",
+  "Repetitive educational administration",
+  "Learner communication",
+  "Digital learning experience",
+  "Teacher or staff support",
+  "Knowledge access",
+  "Responsible AI in education",
+  "Educational business development",
+  "A new educational idea",
+  "Something else",
+];
+---
+
+<section class="solution-finder section" id="education-solution-finder" aria-labelledby="finder-title">
+  <div class="container solution-finder__layout">
+    <header class="finder-intro flow">
+      <p class="eyebrow">Education Solution Finder</p>
+      <h2 id="finder-title">Turn the challenge into a clearer starting brief.</h2>
+      <p class="lede">
+        Describe the situation in ordinary language. The finder will organise what you share, suggest relevant
+        solution areas and identify useful questions for a human conversation.
+      </p>
+      <div class="finder-privacy">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22">
+          <path d="M12 3 5 6v5c0 4.7 2.8 8.2 7 10 4.2-1.8 7-5.3 7-10V6l-7-3Z" fill="none" stroke="currentColor" stroke-width="1.7" />
+          <path d="m9 12 2 2 4-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" />
+        </svg>
+        <p>Your answers stay in this browser. Nothing is sent automatically.</p>
+      </div>
+      <p class="finder-disclaimer">
+        This finder provides a structured starting point, not a guaranteed diagnosis or final educational recommendation.
+      </p>
+    </header>
+
+    <div class="finder-panel surface">
+      <form class="finder-form" data-solution-finder novalidate>
+        <div class="finder-progress" aria-label="Finder progress">
+          <p aria-live="polite"><span data-step-label>Step 1</span> of 4</p>
+          <div class="finder-progress__track" aria-hidden="true">
+            <span data-progress-bar></span>
+          </div>
+        </div>
+
+        <div class="finder-status status status--error" data-form-error role="alert" hidden></div>
+
+        <fieldset class="finder-step" data-step="1">
+          <legend>Who needs support?</legend>
+          <p class="finder-step__help">Choose the closest fit. You can add context later.</p>
+          <div class="choice-grid">
+            {supportOptions.map((option) => (
+              <label class="choice-tile">
+                <input type="radio" name="audience" value={option} required />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset class="finder-step" data-step="2">
+          <legend>What kind of challenge are you facing?</legend>
+          <p class="finder-step__help">Select the main challenge. Related areas will appear in your starting direction.</p>
+          <label class="field-label" for="finder-challenge">Main educational challenge</label>
+          <select id="finder-challenge" name="challenge" required>
+            <option value="">Choose a challenge</option>
+            {challengeOptions.map((option) => <option value={option}>{option}</option>)}
+          </select>
+          <label class="field-label" for="finder-current">How is the issue handled today?</label>
+          <textarea
+            id="finder-current"
+            name="currentApproach"
+            rows="4"
+            minlength="10"
+            maxlength="700"
+            required
+            aria-describedby="finder-current-hint"
+            placeholder="For example: learners ask staff individually, or materials are kept in several places."
+          ></textarea>
+          <p class="field-hint" id="finder-current-hint">Please avoid medical details or other sensitive personal information.</p>
+        </fieldset>
+
+        <fieldset class="finder-step" data-step="3">
+          <legend>What would a better result look like?</legend>
+          <p class="finder-step__help">Focus on a useful change for the learner, educator or organisation.</p>
+          <label class="field-label" for="finder-outcome">Desired outcome</label>
+          <textarea
+            id="finder-outcome"
+            name="outcome"
+            rows="5"
+            minlength="10"
+            maxlength="700"
+            required
+            placeholder="For example: learners can find clear guidance in their preferred language."
+          ></textarea>
+        </fieldset>
+
+        <fieldset class="finder-step" data-step="4">
+          <legend>Language and current stage</legend>
+          <div class="finder-fields">
+            <div>
+              <label class="field-label" for="finder-language">Preferred language</label>
+              <select id="finder-language" name="language" required>
+                <option value="">Choose a language</option>
+                <option>English</option>
+                <option>Español</option>
+                <option>Urdu</option>
+                <option>Another language</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="finder-stage">Urgency or current stage</label>
+              <select id="finder-stage" name="stage" required>
+                <option value="">Choose a stage</option>
+                <option>Just exploring</option>
+                <option>Would like to improve it soon</option>
+                <option>Actively looking for a solution</option>
+              </select>
+            </div>
+          </div>
+          <label class="consent-check">
+            <input type="checkbox" name="consent" required />
+            <span>I understand this is an automated starting direction and that human review remains important.</span>
+          </label>
+        </fieldset>
+
+        <div class="finder-controls">
+          <button class="button button--secondary" type="button" data-previous hidden>Previous</button>
+          <button class="button button--primary" type="button" data-next>Continue</button>
+          <button class="button button--primary" type="submit" data-submit hidden>Create my starting direction</button>
+        </div>
+      </form>
+
+      <section class="finder-result" data-finder-result aria-labelledby="finder-result-title" tabindex="-1" hidden>
+        <div class="finder-result__heading">
+          <p class="eyebrow">Your structured starting direction</p>
+          <h3 id="finder-result-title">A clearer brief for the next conversation</h3>
+          <p data-result-summary></p>
+        </div>
+
+        <div class="finder-result__grid">
+          <section>
+            <h4>Likely solution areas</h4>
+            <ul data-result-areas></ul>
+          </section>
+          <section>
+            <h4>Useful first steps</h4>
+            <ol data-result-steps></ol>
+          </section>
+          <section>
+            <h4>Questions still worth answering</h4>
+            <ul data-result-questions></ul>
+          </section>
+          <section>
+            <h4>Recommended collaboration route</h4>
+            <p data-result-route></p>
+          </section>
+        </div>
+
+        <details class="finder-brief">
+          <summary>Review the complete handoff brief</summary>
+          <label class="field-label" for="finder-brief-output">Editable brief</label>
+          <textarea id="finder-brief-output" data-brief-output rows="13"></textarea>
+        </details>
+
+        <p class="finder-result__note">
+          No information has been sent. Saving the brief only makes it available to the contact experience in this browser.
+        </p>
+        <div class="finder-result__actions cluster">
+          <button class="button button--primary" type="button" data-save-brief>Save for contact</button>
+          <button class="button button--secondary" type="button" data-copy-brief>Copy brief</button>
+          <button class="button button--secondary" type="button" data-restart>Start again</button>
+        </div>
+        <p class="finder-action-status" data-action-status role="status" aria-live="polite"></p>
+      </section>
+    </div>
+  </div>
+</section>
+
+<script>
+  type Direction = {
+    areas: string[];
+    steps: string[];
+    questions: string[];
+    route: string;
+  };
+
+  const directions: Record<string, Direction> = {
+    "Understanding a difficult subject": {
+      areas: ["Learning experience design", "Accessible explanation", "Real-world practice"],
+      steps: ["Identify the exact point where understanding becomes difficult.", "Review the learner’s current materials and prior knowledge.", "Test one clearer explanation with a small practice activity."],
+      questions: ["Which part is hardest to explain in the learner’s own words?", "What has already been tried?", "How will improved understanding be recognised?"],
+      route: "Learner-support and learning-design conversation",
+    },
+    "Examination preparation": {
+      areas: ["Examination-preparation pathway", "Learning materials", "Progress guidance"],
+      steps: ["Confirm the exact examination and current official requirements.", "Map the learner’s starting point and available preparation time.", "Build a realistic sequence of understanding, practice and review."],
+      questions: ["Which official examination is involved?", "Which areas currently need the most support?", "Are approved or official materials already available?"],
+      route: "Examination-preparation planning conversation",
+    },
+    "Course or curriculum development": {
+      areas: ["Course design", "Curriculum structure", "Learning assessment"],
+      steps: ["Define the learners and the useful outcome.", "Organise the essential knowledge into a clear progression.", "Plan practical checks for understanding."],
+      questions: ["Who are the intended learners?", "What should they be able to understand or do?", "Which requirements or standards must be verified?"],
+      route: "Course and curriculum development conversation",
+    },
+    "Multilingual learning": {
+      areas: ["Multilingual learner support", "Accessible educational content", "Learner communication"],
+      steps: ["Identify the information learners most need in their preferred language.", "Separate translation needs from concepts requiring fuller explanation.", "Review language accuracy with appropriate human oversight."],
+      questions: ["Which languages are needed?", "Is the need translation, explanation or both?", "Who can verify specialist terminology?"],
+      route: "Multilingual learning-support conversation",
+    },
+    "Responsible AI in education": {
+      areas: ["Responsible AI-assisted education", "Knowledge access", "Human review and safeguards"],
+      steps: ["Define the educational problem before choosing AI.", "Identify privacy, accuracy and human-review requirements.", "Compare an AI-assisted approach with a simpler alternative."],
+      questions: ["What useful outcome should AI support?", "What information would be involved?", "Who will review important outputs?"],
+      route: "Responsible AI discovery conversation",
+    },
+  };
+
+  const generalDirection: Direction = {
+    areas: ["Learning experience design", "Educational knowledge organisation", "Guidance and communication"],
+    steps: ["Clarify who is affected and what is difficult today.", "Review the current process, information and learning materials.", "Define one useful, observable improvement to explore first."],
+    questions: ["Who is most affected by the challenge?", "What creates the greatest confusion or delay?", "What would show that the situation has improved?"],
+    route: "Educational challenge discovery conversation",
+  };
+
+  const finder = document.querySelector<HTMLFormElement>("[data-solution-finder]");
+
+  if (finder) {
+    const steps = Array.from(finder.querySelectorAll<HTMLElement>("[data-step]"));
+    const result = document.querySelector<HTMLElement>("[data-finder-result]");
+    const panel = finder.closest<HTMLElement>(".finder-panel");
+    const previous = finder.querySelector<HTMLButtonElement>("[data-previous]");
+    const next = finder.querySelector<HTMLButtonElement>("[data-next]");
+    const submit = finder.querySelector<HTMLButtonElement>("[data-submit]");
+    const error = finder.querySelector<HTMLElement>("[data-form-error]");
+    const progress = finder.querySelector<HTMLElement>("[data-progress-bar]");
+    const stepLabel = finder.querySelector<HTMLElement>("[data-step-label]");
+    let activeStep = 0;
+
+    const showStep = (index: number) => {
+      activeStep = Math.max(0, Math.min(index, steps.length - 1));
+      steps.forEach((step, stepIndex) => {
+        step.hidden = stepIndex !== activeStep;
+      });
+      if (previous) previous.hidden = activeStep === 0;
+      if (next) next.hidden = activeStep === steps.length - 1;
+      if (submit) submit.hidden = activeStep !== steps.length - 1;
+      if (stepLabel) stepLabel.textContent = `Step ${activeStep + 1}`;
+      if (progress) progress.style.width = `${((activeStep + 1) / steps.length) * 100}%`;
+      if (error) error.hidden = true;
+    };
+
+    const validateStep = () => {
+      const controls = Array.from(steps[activeStep]?.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>("input, select, textarea") ?? []);
+      const invalid = controls.find((control) => !control.checkValidity());
+      if (!invalid) return true;
+      if (error) {
+        error.textContent = "Please complete this step before continuing.";
+        error.hidden = false;
+      }
+      invalid.reportValidity();
+      invalid.focus();
+      return false;
+    };
+
+    next?.addEventListener("click", () => {
+      if (validateStep()) {
+        showStep(activeStep + 1);
+        steps[activeStep]?.querySelector<HTMLElement>("input, select, textarea")?.focus();
+      }
+    });
+
+    previous?.addEventListener("click", () => {
+      showStep(activeStep - 1);
+      steps[activeStep]?.querySelector<HTMLElement>("input, select, textarea")?.focus();
+    });
+
+    finder.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!validateStep() || !result) return;
+
+      const data = new FormData(finder);
+      const audience = String(data.get("audience") || "Learner or organisation");
+      const challenge = String(data.get("challenge") || "Educational challenge");
+      const currentApproach = String(data.get("currentApproach") || "Not provided").trim();
+      const outcome = String(data.get("outcome") || "Not provided").trim();
+      const language = String(data.get("language") || "Not specified");
+      const stage = String(data.get("stage") || "Not specified");
+      const direction = directions[challenge] || generalDirection;
+      const summary = `${audience} needs support with ${challenge.toLowerCase()}. The current situation is: ${currentApproach} The desired improvement is: ${outcome}`;
+      const brief = [
+        "EDUCATIONAL CHALLENGE BRIEF",
+        `Who needs support: ${audience}`,
+        `Main challenge: ${challenge}`,
+        `Current approach: ${currentApproach}`,
+        `Better outcome: ${outcome}`,
+        `Preferred language: ${language}`,
+        `Current stage: ${stage}`,
+        "",
+        "Likely solution areas:",
+        ...direction.areas.map((item) => `- ${item}`),
+        "",
+        "Useful first steps:",
+        ...direction.steps.map((item, index) => `${index + 1}. ${item}`),
+        "",
+        `Recommended route: ${direction.route}`,
+        "",
+        "This is a structured starting point, not a guaranteed diagnosis or final educational recommendation.",
+      ].join("\n");
+
+      const setText = (selector: string, value: string) => {
+        const target = result.querySelector<HTMLElement>(selector);
+        if (target) target.textContent = value;
+      };
+      const setList = (selector: string, values: string[]) => {
+        const target = result.querySelector<HTMLElement>(selector);
+        if (!target) return;
+        target.replaceChildren(...values.map((value) => {
+          const item = document.createElement("li");
+          item.textContent = value;
+          return item;
+        }));
+      };
+
+      setText("[data-result-summary]", summary);
+      setList("[data-result-areas]", direction.areas);
+      setList("[data-result-steps]", direction.steps);
+      setList("[data-result-questions]", direction.questions);
+      setText("[data-result-route]", direction.route);
+      const briefOutput = result.querySelector<HTMLTextAreaElement>("[data-brief-output]");
+      if (briefOutput) briefOutput.value = brief;
+      finder.hidden = true;
+      result.hidden = false;
+      result.focus({ preventScroll: true });
+      panel?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    document.querySelector<HTMLButtonElement>("[data-save-brief]")?.addEventListener("click", () => {
+      const output = document.querySelector<HTMLTextAreaElement>("[data-brief-output]");
+      const status = document.querySelector<HTMLElement>("[data-action-status]");
+      if (!output) return;
+      try {
+        sessionStorage.setItem("naveedEducationalBrief", output.value);
+        window.dispatchEvent(new CustomEvent("educational-brief-ready", { detail: { brief: output.value } }));
+        if (status) status.textContent = "Brief saved in this browser for the future contact step.";
+      } catch {
+        if (status) status.textContent = "This browser could not save the brief. You can still copy it.";
+      }
+    });
+
+    document.querySelector<HTMLButtonElement>("[data-copy-brief]")?.addEventListener("click", async () => {
+      const output = document.querySelector<HTMLTextAreaElement>("[data-brief-output]");
+      const status = document.querySelector<HTMLElement>("[data-action-status]");
+      if (!output) return;
+      try {
+        await navigator.clipboard.writeText(output.value);
+        if (status) status.textContent = "Brief copied. You decide where to share it.";
+      } catch {
+        output.select();
+        if (status) status.textContent = "Select Copy from your browser or keyboard to copy the highlighted brief.";
+      }
+    });
+
+    document.querySelector<HTMLButtonElement>("[data-restart]")?.addEventListener("click", () => {
+      finder.reset();
+      if (result) result.hidden = true;
+      finder.hidden = false;
+      showStep(0);
+      panel?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    showStep(0);
+  }
+</script>

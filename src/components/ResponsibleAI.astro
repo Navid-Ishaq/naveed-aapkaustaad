@@ -1,0 +1,106 @@
+---
+const appropriateUses = [
+  "Make important information easier to find and navigate.",
+  "Offer simpler first explanations of complex material for human review.",
+  "Support multilingual communication while preserving context and meaning.",
+  "Organise educational knowledge, documents and recurring guidance.",
+  "Reduce repetitive administrative work that takes time away from people.",
+  "Help learners locate relevant material without pretending to replace teaching.",
+  "Give teachers and academy teams a structured first draft to check and improve.",
+];
+
+const safeguards = [
+  {
+    title: "Accuracy",
+    text: "AI can produce incomplete, outdated or incorrect answers. Important educational information must be checked.",
+  },
+  {
+    title: "Human judgment",
+    text: "Educators, learners and responsible decision-makers remain essential—especially where context or consequences matter.",
+  },
+  {
+    title: "Privacy",
+    text: "Personal or sensitive learner information should not be collected or shared without a clear, justified and protected process.",
+  },
+  {
+    title: "Honest boundaries",
+    text: "AI must not diagnose learning, medical or psychological conditions, guarantee examination success or invent institutional facts.",
+  },
+  {
+    title: "Proportion",
+    text: "The simplest effective approach may not require AI. Complexity is justified only when it creates clear educational value.",
+  },
+];
+---
+
+<section class="responsible-ai section" id="responsible-ai" aria-labelledby="responsible-ai-title">
+  <div class="container">
+    <header class="responsible-ai__header">
+      <div class="flow">
+        <p class="eyebrow">Responsible AI in education</p>
+        <h2 id="responsible-ai-title">AI should support learning—not replace understanding.</h2>
+      </div>
+      <p class="lede">
+        AI can be useful when it improves access, clarity or routine support. It should not replace educators,
+        human judgment, learner effort or responsibility for important decisions.
+      </p>
+    </header>
+
+    <div class="responsible-ai__balance">
+      <section class="ai-support" aria-labelledby="ai-support-title">
+        <div class="ai-panel-heading">
+          <span aria-hidden="true">+</span>
+          <div>
+            <p class="eyebrow">Where it may help</p>
+            <h3 id="ai-support-title">Useful support with a clear purpose</h3>
+          </div>
+        </div>
+        <ul>
+          {appropriateUses.map((item) => (
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 20 20" width="20" height="20">
+                <path d="m4 10 3.5 3.5L16 5.8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+              </svg>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="ai-safeguards" aria-labelledby="ai-safeguards-title">
+        <div class="ai-panel-heading">
+          <span aria-hidden="true">!</span>
+          <div>
+            <p class="eyebrow">What must remain protected</p>
+            <h3 id="ai-safeguards-title">Clear limits and human responsibility</h3>
+          </div>
+        </div>
+        <dl>
+          {safeguards.map((item) => (
+            <div>
+              <dt>{item.title}</dt>
+              <dd>{item.text}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    </div>
+
+    <aside class="ai-decision-gate" aria-labelledby="ai-gate-title">
+      <header>
+        <p class="eyebrow">Before AI enters the solution</p>
+        <h3 id="ai-gate-title">Four questions come first.</h3>
+      </header>
+      <ol>
+        <li><span>01</span><p>What educational problem needs to improve?</p></li>
+        <li><span>02</span><p>Would a simpler approach solve it well?</p></li>
+        <li><span>03</span><p>What information, privacy and accuracy risks exist?</p></li>
+        <li><span>04</span><p>Where will human review and responsibility remain?</p></li>
+      </ol>
+      <p class="ai-decision-gate__outcome">
+        <strong>AI is not the starting point.</strong>
+        A useful, safe and understandable educational outcome is.
+      </p>
+    </aside>
+  </div>
+</section>
