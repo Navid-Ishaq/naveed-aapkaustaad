@@ -203,6 +203,16 @@ Last updated: 2026-08-17
 - Confirmed `main` remains the repository's only branch.
 - Made no Cloudflare deployment, DNS change, custom-domain attachment or removal of temporary no-index protection.
 
+### Phase 19 — Temporary Cloudflare Workers deployment
+
+- Connected the existing `Navid-Ishaq/naveed-aapkaustaad` repository to Cloudflare Workers with `main` as the production branch.
+- Configured the repository root (`/`), `npm run build` build command and `npx wrangler deploy` deploy command; no build variables or application secrets were required.
+- Retained non-production branch builds with `npx wrangler versions upload` for future preview versions.
+- Completed dependency installation, Astro production build, Worker upload and deployment successfully through Cloudflare Builds.
+- Deployed Worker version `0eaa582f-dcc0-49e6-9fe7-386f9f785639` to `https://naveed-aapkaustaad.mnvid.workers.dev`.
+- Smoke-tested the live homepage, contact page, Field Notes index and published Field Note; expected titles and primary headings rendered on every checked route.
+- Kept `naveed.aapkaustaad.com` unattached and made no DNS, zone, custom-domain or indexing-policy change.
+
 ## Factual sources
 
 - `https://alnoor.aapkaustaad.com` — current academy and course reference.
@@ -240,9 +250,9 @@ Last updated: 2026-08-17
 - No founder portrait or approved personal imagery has been supplied.
 - Privacy and website-use documents require a later content/legal review.
 - Any external or paid AI provider requires separate approval.
-- Wrangler deployment verification must be repeated in the Cloudflare-connected launch phase because the local sandbox blocks Wrangler from traversing its generated absolute build path.
+- The temporary Worker is deployed successfully; custom-domain attachment and launch indexing remain intentionally pending.
 - The dependency installer reported three audit advisories (two moderate and one high); run a full registry-backed `npm audit` during launch readiness and review each advisory before applying any potentially breaking upgrade.
 
 ## Next proposed task
 
-Prepare and execute the controlled temporary Cloudflare Workers deployment to a `workers.dev` URL: report and verify the exact production branch, build command, deploy command, root directory, Worker name and required bindings first; deploy the current `main`; then smoke-test the temporary URL. Do not attach `naveed.aapkaustaad.com`, change DNS or remove temporary no-index protection without separate approval.
+Prepare the custom-domain launch plan for `naveed.aapkaustaad.com`: verify current Cloudflare zone and DNS state, define the safe Worker-domain attachment sequence, review launch indexing changes and provide a rollback checklist. Do not attach the domain, modify DNS or remove temporary no-index protection until each launch action is explicitly approved.
